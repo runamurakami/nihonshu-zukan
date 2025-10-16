@@ -65,3 +65,6 @@ Chromeで「日本酒記録アプリ」と検索した際に上位に出てく�
 
 ## 画面遷移図
 Figma：https://www.figma.com/design/YMBM1fAezaYuMzjYar3Zht/%E3%82%8F%E3%81%9F%E3%81%97%E3%81%AE%E6%97%A5%E6%9C%AC%E9%85%92%E5%9B%B3%E9%91%91?node-id=0-1&t=iRXcZ5yhwyzDkgaf-1
+
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/a1284ba78a5714c35941e505dd24d429.png)](https://gyazo.com/a1284ba78a5714c35941e505dd24d429)
