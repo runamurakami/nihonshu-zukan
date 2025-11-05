@@ -20,8 +20,10 @@
 
   <body class="bg-blue-50 text-blue-900 font-sans leading-relaxed text-base">
     <%= render 'shared/header' %>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class="min-h-screen flex items-center justify-center">
+      <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
