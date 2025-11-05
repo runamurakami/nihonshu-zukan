@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # パスワードルートを無効化
-  devise_for :users, skip: [ :passwords ], controllers: {
+  # 不要な Devise 機能（メール確認・ロック解除・パスワードリセットなど）ルートを無効化
+  devise_for :users, skip: [ :passwords, :confirmations, :unlocks, :mailer ], controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
