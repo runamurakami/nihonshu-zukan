@@ -4,9 +4,11 @@
 
     <nav>
       <ul class="flex space-x-4">
+        <% if user_signed_in? %>
         <li><%= link_to "図鑑", '#'%></li>
         <li><%= link_to "登録", '#'%></li>
-        <li><%= link_to "ログアウト", '#', class: "p-1 border border-blue-900 rounded" %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "p-1 border border-blue-900 rounded" %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
