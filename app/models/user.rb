@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
   # パスワードリセット機能無効化のため :recoverable を削除
+  has_many :sakes, dependent: :destroy
 end
