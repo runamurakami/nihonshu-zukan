@@ -18,7 +18,7 @@ class SakesController < ApplicationController
   private
 
   def sake_params
-    params.require( :sake ).permit( :name, :brewery_name, :prefecture_name, :sake_meter_value, :rating, :label_image )
+    params.require( :sake ).permit( :name, :brewery_name, :prefecture_name, :sake_meter_value, :rating, :taste_tag_name, :comment, :label_image )
   end
 
 end
