@@ -19,6 +19,10 @@ class SakesController < ApplicationController
     end
   end
 
+  def show
+    @sake = Sake.find(params[:id])
+  end
+
   private
 
   def sake_params
