@@ -20,10 +20,19 @@
 
   <body class="bg-blue-50 text-blue-900 font-sans leading-relaxed text-base">
     <%= render 'shared/header' %>
+
     <main class="min-h-screen flex items-center justify-center">
-      <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <%= yield %>
-      </div>
+      <% if controller_name == "sakes" %>
+        <!-- 日本酒登録画面など：横幅広め -->
+        <div class="w-full max-w-3xl bg-white p-10 rounded-xl shadow-lg">
+          <%= yield %>
+        </div>
+      <% else %>
+        <!-- ログイン・新規登録など：小さめカード -->
+        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+          <%= yield %>
+        </div>
+      <% end %>
     </main>
   </body>
 </html>
