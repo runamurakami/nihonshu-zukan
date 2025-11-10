@@ -8,9 +8,9 @@ class SakesController < ApplicationController
   def create
     @sake = current_user.sakes.build(sake_params)
     if @sake.save
-      redirect_to root_path, notice: '日本酒を登録しました。'
+      redirect_to root_path, notice: "日本酒を登録しました。"
     else
-      flash.now[:alert] = '登録に失敗しました。'
+      flash.now[:alert] = "登録に失敗しました。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -18,7 +18,6 @@ class SakesController < ApplicationController
   private
 
   def sake_params
-    params.require( :sake ).permit( :name, :brewery_name, :prefecture_name, :sake_meter_value, :rating, :taste_tag_name, :comment, :label_image )
+    params.require(:sake).permit(:name, :brewery_name, :prefecture_name, :sake_meter_value, :rating, :taste_tag_name, :comment, :label_image)
   end
-
 end
