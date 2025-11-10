@@ -1,10 +1,10 @@
 class SakesController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
 
   def index
     @sakes = Sake.all.includes(label_image_attachment: :blob)
   end
-  
+
   def new
     @sake = Sake.new
   end
