@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "static_pages#top"
 
-  resources :sakes, only: [ :new, :create ]
+  resources :sakes, only: [ :new, :create, :index ]
 end
