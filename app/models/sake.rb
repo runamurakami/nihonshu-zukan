@@ -8,5 +8,4 @@ class Sake < ApplicationRecord
   has_many :taste_tags, through: :sake_taste_tags
 
   has_one_attached :label_image
-
 end
