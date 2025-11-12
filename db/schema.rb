@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_12_085322) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_12_140133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_085322) do
     t.index ["name"], name: "index_prefectures_on_name", unique: true
   end
 
+  create_table "sake_taste_tags", force: :cascade do |t|
+    t.bigint "sake_id", null: false
+    t.bigint "taste_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sake_id"], name: "index_sake_taste_tags_on_sake_id"
+    t.index ["taste_tag_id"], name: "index_sake_taste_tags_on_taste_tag_id"
+  end
+
   create_table "sakes", force: :cascade do |t|
     t.string "name"
     t.string "brewery_name"
@@ -69,6 +78,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_085322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sakes_on_user_id"
+  end
+
+  create_table "taste_tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_taste_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,5 +103,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_085322) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "breweries", "prefectures"
+  add_foreign_key "sake_taste_tags", "sakes"
+  add_foreign_key "sake_taste_tags", "taste_tags"
   add_foreign_key "sakes", "users"
 end
