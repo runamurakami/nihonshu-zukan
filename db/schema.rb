@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_12_140133) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_12_151224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_140133) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "brewery_id", null: false
+    t.index ["brewery_id"], name: "index_sakes_on_brewery_id"
     t.index ["user_id"], name: "index_sakes_on_user_id"
   end
 
@@ -105,5 +107,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_140133) do
   add_foreign_key "breweries", "prefectures"
   add_foreign_key "sake_taste_tags", "sakes"
   add_foreign_key "sake_taste_tags", "taste_tags"
+  add_foreign_key "sakes", "breweries"
   add_foreign_key "sakes", "users"
 end
