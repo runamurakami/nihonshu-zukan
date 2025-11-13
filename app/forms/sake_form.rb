@@ -1,11 +1,11 @@
 class SakeForm
   include ActiveModel::Model
   include ActiveModel::Attributes
-  
+
   attr_accessor :name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :taste_tags, :label_image, :comment, :user
-  
+
   validates :name, :brewery_name, presence: true
-  
+
   def save
     return false unless valid?
 
