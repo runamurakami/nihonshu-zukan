@@ -22,11 +22,14 @@ class SakesController < ApplicationController
 
   def show
     @sake = Sake.find(params[:id])
+    @brewery = @sake.brewery
+    @prefecture = @brewery.prefecture
+    @taste_tags = @sake.taste_tags
   end
 
   private
 
   def sake_form_params
-    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :comment, :label_image, taste_tags: [])
+    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :comment, :label_image, :taste_tags)
   end
 end
