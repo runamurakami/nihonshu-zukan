@@ -1,13 +1,13 @@
 <h1 class="text-2xl font-bold mb-6 text-center">日本酒登録</h1>
-<%= form_with model: @sake, local: true do |f| %>
+<%= form_with model: @sake_form, url: sakes_path, local: true do |f| %>
   <div class="flex items-center mb-4">
     <%= f.label :name, "日本酒名", class: "w-32 font-semibold" %>
     <%= f.text_field :name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :prefecture_name, "産地", class: "w-32 font-semibold" %>
-    <%= f.text_field :prefecture_name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+    <%= f.label :prefecture_id, "産地", class: "w-32 font-semibold" %>
+    <%=  f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
   </div>
 
   <div class="flex items-center mb-4">
@@ -26,8 +26,8 @@
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :taste_tag_name, "タグ", class: "w-32 font-semibold" %>
-    <%= f.text_field :taste_tag_name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+    <%= f.label :taste_tags, "タグ", class: "w-32 font-semibold" %>
+    <%= f.text_field :taste_tags, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
 
   <div class="flex items-center mb-6">

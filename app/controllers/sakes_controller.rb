@@ -6,12 +6,13 @@ class SakesController < ApplicationController
   end
 
   def new
-    @sake = Sake.new
+    @sake_form = SakeForm.new
   end
 
   def create
-    @sake = current_user.sakes.build(sake_params)
-    if @sake.save
+    @sake_form = SakeForm.new(sake_form_params)
+    @sake_form.user = current_user
+    if @sake_form.save
       redirect_to root_path, notice: "日本酒を登録しました。"
     else
       flash.now[:alert] = "登録に失敗しました。"
@@ -25,7 +26,7 @@ class SakesController < ApplicationController
 
   private
 
-  def sake_params
-    params.require(:sake).permit(:name, :brewery_name, :prefecture_name, :sake_meter_value, :rating, :taste_tag_name, :comment, :label_image)
+  def sake_form_params
+    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :comment, :label_image, taste_tags: [])
   end
 end
