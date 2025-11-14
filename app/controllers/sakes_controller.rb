@@ -44,7 +44,7 @@ class SakesController < ApplicationController
   def update
     @sake = Sake.find(params[:id])
     @sake_form = SakeForm.new(sake_form_params)
-  
+
     if @sake_form.update(@sake)
       redirect_to @sake, notice: "日本酒情報を更新しました。"
     else

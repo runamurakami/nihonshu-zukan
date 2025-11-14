@@ -35,10 +35,10 @@ class SakeForm
 
   def update(sake)
     return false unless valid?
-  
+
     ActiveRecord::Base.transaction do
       brewery = Brewery.find_or_create_by!(name: brewery_name, prefecture_id: prefecture_id)
-  
+
       sake.update!(
         name: name,
         brewery: brewery,
@@ -46,14 +46,12 @@ class SakeForm
         rating: rating,
         comment: comment
       )
-  
-      # ラベル画像の更新
+
       if label_image.present?
         sake.label_image.purge if sake.label_image.attached?
         sake.label_image.attach(label_image)
       end
-  
-      # タグの更新
+
       sake.sake_taste_tags.destroy_all
       tag_names = taste_tags.to_s.split(/[,\u3001]/).map(&:strip).reject(&:blank?)
       tag_names.each do |tag_name|
@@ -61,7 +59,7 @@ class SakeForm
         SakeTasteTag.create!(sake: sake, taste_tag: tag)
       end
     end
-  
+
     true
   rescue ActiveRecord::RecordInvalid
     false
