@@ -19,6 +19,10 @@
       <div class="flex-shrink-0 w-48">
         <%= image_tag @sake.label_image, class: "w-full h-auto rounded-lg" %>
       </div>
+    <% else %>
+      <div class="w-64 h-64 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
+        no label
+      </div>
     <% end %>
 
     <!-- 右側: コメント以外の情報 -->
