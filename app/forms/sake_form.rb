@@ -32,7 +32,9 @@ class SakeForm
     return false unless valid?
 
     ActiveRecord::Base.transaction do
-      brewery = Brewery.find_or_create_by!(name: brewery_name, prefecture_id: prefecture_id)
+      brewery = Brewery.find_or_create_by!(name: brewery_name)
+      # pref_id がある場合だけ代入
+      brewery.update(prefecture_id: prefecture_id) if prefecture_id.present?
       new_sake = Sake.new(
         name: name,
         brewery: brewery,
@@ -58,7 +60,9 @@ class SakeForm
     return false unless target_sake.present?
 
     ActiveRecord::Base.transaction do
-      brewery = Brewery.find_or_create_by!(name: brewery_name, prefecture_id: prefecture_id)
+      brewery = Brewery.find_or_create_by!(name: brewery_name)
+      # pref_id がある場合だけ代入
+      brewery.update(prefecture_id: prefecture_id) if prefecture_id.present?
 
       target_sake.update!(
         name: name,

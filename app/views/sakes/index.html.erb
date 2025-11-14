@@ -6,6 +6,10 @@
       <div class="bg-white rounded-lg shadow p-4">
         <% if sake.label_image.attached? %>
           <%= image_tag sake.label_image, class: "w-full h-48 object-cover rounded" %>
+        <% else %>
+          <div class="w-45 h-32 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
+            no label
+          </div>
         <% end %>
         <h2 class="text-lg font-semibold mt-2"><%= sake.name %></h2>
       </div>

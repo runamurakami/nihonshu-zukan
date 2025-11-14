@@ -8,11 +8,13 @@
     <%= f.text_field :name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
+  <!-- 一時的にコメントアウト -->
+  <!--
   <div class="flex items-center mb-4">
     <%= f.label :prefecture_id, "産地", class: "w-32 font-semibold" %>
     <%=  f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
   </div>
-  
+  -->
   <div class="flex items-center mb-4">
     <%= f.label :brewery_name, "酒造会社", class: "w-32 font-semibold" %>
     <%= f.text_field :brewery_name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
@@ -33,10 +35,13 @@
     <%= f.text_field :taste_tags, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
+  <!-- 一時的にコメントアウト -->
+  <!--
   <div class="flex items-center mb-6">
     <%= f.label :label_image, "ラベル画像", class: "w-32 font-semibold" %>
     <%= f.file_field :label_image, class: "flex-1" %>
   </div>
+  -->
   
   <div class="flex items-center mb-4">
     <%= f.label :comment, "メモ", class: "w-32 font-semibold" %>
