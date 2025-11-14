@@ -28,16 +28,16 @@ class SakesController < ApplicationController
   end
 
   def edit
-    sake = Sake.find(params[:id])
+    @sake = Sake.find(params[:id])
     @sake_form = SakeForm.new(
-      name: sake.name,
-      brewery_name: sake.brewery.name,
-      prefecture_id: sake.brewery.prefecture_id,
-      sake_meter_value: sake.sake_meter_value,
-      rating: sake.rating,
-      taste_tags: sake.taste_tags.pluck(:name).join("、"),
-      comment: sake.comment,
-      label_image: sake.label_image
+      name: @sake.name,
+      brewery_name: @sake.brewery.name,
+      prefecture_id: @sake.brewery.prefecture_id,
+      sake_meter_value: @sake.sake_meter_value,
+      rating: @sake.rating,
+      taste_tags: @sake.taste_tags.pluck(:name).join("、"),
+      comment: @sake.comment,
+      label_image: @sake.label_image
     )
   end
 
