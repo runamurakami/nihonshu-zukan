@@ -1,8 +1,10 @@
 class SakesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_sake, only: [ :show, :edit, :update, :destroy ]
+  before_action :authorize_user!, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @sakes = Sake.all.includes(label_image_attachment: :blob)
+    @sakes = current_user.sakes.includes(label_image_attachment: :blob)
   end
 
   def new
@@ -50,6 +52,17 @@ class SakesController < ApplicationController
   end
 
   private
+
+  def set_sake
+    @sake = Sake.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @sake.user == current_user
+      flash[:alert] = "この日本酒にはアクセスできません"
+      redirect_to sakes_path
+    end
+  end
 
   def sake_form_params
     params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :comment, :label_image, :taste_tags)
