@@ -1,0 +1,9 @@
+<% if resource.present? && resource.errors.any? %>
+  <div class="bg-red-50 border border-red-400 text-red-800 px-4 py-3 rounded mb-4">
+    <ul>
+      <% resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
