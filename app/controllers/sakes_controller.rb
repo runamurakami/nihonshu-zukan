@@ -38,6 +38,7 @@ class SakesController < ApplicationController
     if @sake_form.update(@sake)
       redirect_to sake_path(@sake), notice: "日本酒を更新しました。"
     else
+      flash.now[:alert] = "更新に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end
