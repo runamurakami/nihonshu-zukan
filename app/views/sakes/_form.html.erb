@@ -1,3 +1,4 @@
+<%= render 'shared/error_messages', resource: sake_form %>
 <%= form_with model: @sake_form,
               url: @sake_form.sake.present? ? sake_path(@sake_form.sake) : sakes_path,
               method: @sake_form.sake.present? ? :patch : :post,
