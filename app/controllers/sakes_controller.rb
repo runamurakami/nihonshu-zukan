@@ -42,6 +42,12 @@ class SakesController < ApplicationController
     end
   end
 
+  def destroy
+    @sake = Sake.find(params[:id])
+    @sake.destroy
+    redirect_to sakes_path, notice: "日本酒を削除しました。"
+  end
+
   private
 
   def sake_form_params
