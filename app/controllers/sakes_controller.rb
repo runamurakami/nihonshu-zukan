@@ -31,19 +31,13 @@ class SakesController < ApplicationController
     @sake = Sake.find(params[:id])
     @sake_form = SakeForm.new({}, sake: @sake)
   end
-  
+
   def update
-    
     @sake = Sake.find(params[:id])
     @sake_form = SakeForm.new(sake_form_params, sake: @sake)
-    Rails.logger.debug "=== SakeForm Params ==="
-    Rails.logger.debug sake_form_params.inspect
     if @sake_form.update(@sake)
-      Rails.logger.debug "=== Update SUCCESS ==="
-      Rails.logger.debug @sake.reload.attributes.inspect
       redirect_to sake_path(@sake), notice: "日本酒を更新しました。"
     else
-      Rails.logger.debug "=== Update FAILED ==="
       render :edit, status: :unprocessable_entity
     end
   end
