@@ -23,7 +23,7 @@ class SakesController < ApplicationController
   def show
     @sake = Sake.find(params[:id])
     @brewery = @sake.brewery
-    @prefecture = @brewery.prefecture
+    @prefecture = @brewery.prefecture if @brewery&.prefecture_id.present?
     @taste_tags = @sake.taste_tags
   end
 
