@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :rememberable, :validatable
   # パスワードリセット機能無効化のため :recoverable を削除
   has_many :sakes, dependent: :destroy
+
+  validates :name, presence: true
 end
