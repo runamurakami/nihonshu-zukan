@@ -59,3 +59,5 @@ end
 gem "tailwindcss-rails", "~> 4.3"
 
 gem "devise", "~> 4.9"
+
+gem "ransack"

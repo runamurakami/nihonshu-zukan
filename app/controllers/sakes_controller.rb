@@ -4,7 +4,8 @@ class SakesController < ApplicationController
   before_action :authorize_user!, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @sakes = current_user.sakes.includes(label_image_attachment: :blob)
+    @q = current_user.sakes.includes(label_image_attachment: :blob).ransack(params[:q])
+    @sakes = @q.result(distinct: true)
   end
 
   def new
