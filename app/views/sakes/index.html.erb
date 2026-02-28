@@ -1,3 +1,24 @@
+<%= search_form_for @q, url: sakes_path, method: :get do |f| %>
+  <div class="flex gap-6">
+    <div class="flex flex-col flex-1">
+      <%= f.label :name_cont, "日本酒名", class: "mb-1" %>
+      <%= f.search_field :name_cont, class: "border rounded px-3 py-2" %>
+    </div>
+    <select disabled class="border rounded px-3 py-2 bg-gray-100">
+      <option>産地（今後追加予定）</option>
+    </select>
+    <div class="flex flex-col flex-1">
+      <%= f.label :brewery_name_cont, "酒蔵会社", class: "mb-1"  %>
+      <%= f.search_field :brewery_name_cont, class: "border rounded px-3 py-2" %>
+    </div>
+    <div class="flex flex-col flex-1">
+      <%= f.label :taste_tags_name_cont, "タグ", class: "mb-1"  %>
+      <%= f.search_field :taste_tags_name_cont, class: "border rounded px-3 py-2" %>
+    </div>
+    <%= f.submit "検索", class: "btn btn-primary w-full" %>
+  </div>
+<% end %>
+
 <h1 class="text-2xl font-bold mb-4">日本酒一覧</h1>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
