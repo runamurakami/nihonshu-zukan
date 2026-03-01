@@ -1,3 +1,5 @@
-<h1 class="text-xl font-bold mb-4">日本酒を編集</h1>
+<% content_for :page_title do %>
+    <h1 class="text-2xl font-bold">日本酒編集</h1>
+<% end %>
 
 <%= render "form", sake_form: @sake_form, url: sake_path(@sake), method: :patch %>

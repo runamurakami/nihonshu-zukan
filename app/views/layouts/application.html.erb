@@ -21,19 +21,36 @@
   <body class="bg-blue-50 text-blue-900 font-sans leading-relaxed text-base">
     <%= render 'shared/header' %>
     <%= render 'shared/flash_messages' %>
-
-    <main class="min-h-screen flex items-center justify-center">
-      <% if controller_name == "sakes" %>
+    
+    <% if controller_name == "sakes" && ["new", "edit", "show"].include?(action_name) %>
+      <main class="min-h-screen py-12 px-6">
         <!-- 日本酒登録画面など：横幅広め -->
-        <div class="w-full max-w-3xl bg-white p-10 rounded-xl shadow-lg">
-          <%= yield %>
+        <div class="max-w-3xl mx-auto">
+          <div class="mb-6 text-center">
+            <%= yield :page_title %>
+          </div>
+          <div class="bg-white p-10 rounded-2xl shadow-md">
+            <%= yield %>
+          </div>
         </div>
-      <% else %>
+      </main>
+    <% elsif controller_name == "sakes" && action_name == "index" %>
+      <!-- 一覧：フル幅 -->
+      <main class="min-h-screen w-full px-6 lg:px-10 py-8">
+        <%= yield %>
+      </main>
+    <% elsif controller_name == "static_pages" %>
+      <!-- TOP：完全フル幅 -->
+      <main class="w-full">
+        <%= yield %>
+      </main>
+    <% else %>
         <!-- ログイン・新規登録など：小さめカード -->
-        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-          <%= yield %>
-        </div>
-      <% end %>
-    </main>
+        <main class="min-h-screen flex items-center justify-center px-4">
+          <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+            <%= yield %>
+          </div>
+        </main>
+    <% end %>
   </body>
 </html>

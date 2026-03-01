@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "static_pages#top"
+  root "static_pages#landing"
+  get "top", to: "static_pages#top"
 
   resources :sakes, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
 end
