@@ -1,1 +1,38 @@
-<h1>わたしの日本酒図鑑</h1>
+<div x-data="{ tab: 'recent' }" class="max-w-5xl mx-auto mt-12">
+  <!-- タブ -->
+  <div class="flex gap-2">
+    <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
+      :class="tab === 'recent' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='recent'">
+      最近登録した日本酒
+    </button>
+    <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
+     :class="tab === 'map' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='map'">
+      マップ
+    </button>
+    <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
+      :class="tab === 'graph' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='graph'">
+      グラフ
+    </button>
+    <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
+      :class="tab === 'badge' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='badge'">
+      バッジ
+    </button>
+  </div>
+  <!-- タブ切替コンテンツ -->
+  <div class="bg-white rounded-b-2xl rounded-tr-2xl p-8 min-h-[500px]">
+    <!-- 最近登録した日本酒タブ -->
+    <div x-show="tab === 'recent'">
+      最近登録した日本酒
+    </div>
+    <!-- マップタブ -->
+    <div x-show="tab === 'map'">
+      xxx
+    </div>
+    <!-- グラフタブ -->
+    <div x-show="tab === 'graph'">
+    </div>
+    <!-- バッジタブ -->
+    <div x-show="tab === 'badge'">
+    </div>
+  </div>
+</div>

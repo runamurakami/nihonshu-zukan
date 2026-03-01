@@ -1,38 +1,53 @@
-<%= search_form_for @q, url: sakes_path, method: :get do |f| %>
-  <div class="flex gap-6">
-    <div class="flex flex-col flex-1">
-      <%= f.label :name_cont, "日本酒名", class: "mb-1" %>
-      <%= f.search_field :name_cont, class: "border rounded px-3 py-2" %>
-    </div>
-    <select disabled class="border rounded px-3 py-2 bg-gray-100">
-      <option>産地（今後追加予定）</option>
-    </select>
-    <div class="flex flex-col flex-1">
-      <%= f.label :brewery_name_cont, "酒蔵会社", class: "mb-1"  %>
-      <%= f.search_field :brewery_name_cont, class: "border rounded px-3 py-2" %>
-    </div>
-    <div class="flex flex-col flex-1">
-      <%= f.label :taste_tags_name_cont, "タグ", class: "mb-1"  %>
-      <%= f.search_field :taste_tags_name_cont, class: "border rounded px-3 py-2" %>
-    </div>
-    <%= f.submit "検索", class: "btn btn-primary w-full" %>
+<div class="max-w-5xl mx-auto mb-10">
+  <div class="bg-white rounded-2xl shadow-sm p-6">
+    <%= search_form_for @q, url: sakes_path, method: :get do |f| %>
+      <div class="flex gap-6">
+        <div class="flex flex-col flex-1">
+          <%= f.label :name_cont, "日本酒名", class: "mb-1" %>
+          <%= f.search_field :name_cont, class: "border rounded px-3 py-2" %>
+        </div>
+        <select disabled class="border rounded px-3 py-2 bg-gray-100">
+          <option>産地（今後追加予定）</option>
+        </select>
+        <div class="flex flex-col flex-1">
+          <%= f.label :brewery_name_cont, "酒蔵会社", class: "mb-1"  %>
+          <%= f.search_field :brewery_name_cont, class: "border rounded px-3 py-2" %>
+        </div>
+        <div class="flex flex-col flex-1">
+          <%= f.label :taste_tags_name_cont, "タグ", class: "mb-1"  %>
+          <%= f.search_field :taste_tags_name_cont, class: "border rounded px-3 py-2" %>
+        </div>
+        <%= f.submit "検索", class: "btn btn-primary w-full" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
-<h1 class="text-2xl font-bold mb-4">日本酒一覧</h1>
+<div class="text-center mb-8">
+  <h1 class="text-3xl font-bold">日本酒一覧</h1>
+</div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   <% @sakes.each do |sake| %>
-    <%= link_to sake_path(sake), class: "block" do %>
-      <div class="bg-white rounded-lg shadow p-4">
-        <% if sake.label_image.attached? %>
-          <%= image_tag sake.label_image, class: "w-full h-48 object-cover rounded" %>
-        <% else %>
-          <div class="w-45 h-32 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
-            no label
-          </div>
-        <% end %>
-        <h2 class="text-lg font-semibold mt-2"><%= sake.name %></h2>
+    <%= link_to sake_path(sake), class: "block group" do %>
+      <div class="bg-white rounded-xl shadow-md p-4
+                  transition duration-300 hover:shadow-lg">
+        <!-- 画像枠 -->
+        <div class="aspect-square bg-gray-100 rounded-lg 
+                    flex items-center justify-center overflow-hidden">
+          <% if sake.label_image.attached? %>
+            <%= image_tag sake.label_image,
+                  class: "max-h-40 object-contain" %>
+          <% else %>
+            <span class="text-gray-400 text-sm">no label</span>
+          <% end %>
+        </div>
+        <!-- テキスト -->
+        <div class="mt-4 text-center">
+          <h2 class="font-semibold text-lg truncate">
+            <%= sake.name %>
+          </h2>
+        </div>
       </div>
     <% end %>
   <% end %>
