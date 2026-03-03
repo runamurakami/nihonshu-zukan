@@ -22,7 +22,22 @@
   <div class="bg-white rounded-b-2xl rounded-tr-2xl p-8 min-h-[500px]">
     <!-- 最近登録した日本酒タブ -->
     <div x-show="tab === 'recent'">
-      最近登録した日本酒
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold">最近登録した日本酒</h1>
+        <%= link_to "日本酒一覧へ →",
+              sakes_path,
+              class: "text-sm font-semibold text-indigo-600 hover:underline" %>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <% if @recent_sakes.present? %>
+        <%= render partial: "sakes/sake_card",
+                   collection: @recent_sakes,
+                   as: :sake %>
+      <% else %>
+        <p class="text-gray-500">まだ日本酒が登録されていません。</p>
+      <% end %>
+      </div>
     </div>
     <!-- マップタブ -->
     <div x-show="tab === 'map'">

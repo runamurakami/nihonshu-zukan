@@ -28,27 +28,7 @@
 </div>
 
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  <% @sakes.each do |sake| %>
-    <%= link_to sake_path(sake), class: "block group" do %>
-      <div class="bg-white rounded-xl shadow-md p-4
-                  transition duration-300 hover:shadow-lg">
-        <!-- 画像枠 -->
-        <div class="aspect-square bg-gray-100 rounded-lg 
-                    flex items-center justify-center overflow-hidden">
-          <% if sake.label_image.attached? %>
-            <%= image_tag sake.label_image,
-                  class: "max-h-40 object-contain" %>
-          <% else %>
-            <span class="text-gray-400 text-sm">no label</span>
-          <% end %>
-        </div>
-        <!-- テキスト -->
-        <div class="mt-4 text-center">
-          <h2 class="font-semibold text-lg truncate">
-            <%= sake.name %>
-          </h2>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render partial: "sakes/sake_card",
+             collection: @sakes,
+             as: :sake %>
 </div>
