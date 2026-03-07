@@ -15,5 +15,11 @@ class StaticPagesController < ApplicationController
     @sake_counts_by_month = months.map do |month|
       [ month, counts[month] || 0 ]
       end.to_h
+
+    @tag_counts = current_user.sakes
+      .joins(:taste_tags)
+      .group("taste_tags.name")
+      .order("count_all DESC")
+      .count
   end
 end
