@@ -6,9 +6,16 @@
           <%= f.label :name_cont, "日本酒名", class: "mb-1" %>
           <%= f.search_field :name_cont, class: "border rounded px-3 py-2" %>
         </div>
-        <select disabled class="border rounded px-3 py-2 bg-gray-100">
-          <option>産地（今後追加予定）</option>
-        </select>
+        <div class="flex flex-col flex-1">
+          <%= f.label :brewery_prefecture_id_eq, "産地", class: "mb-1" %>
+          <%= f.collection_select :brewery_prefecture_id_eq,
+            Prefecture.order(:id),
+            :id,
+            :name,
+            { include_blank: "産地を選択" },
+            class: "border rounded px-3 py-2"
+          %>
+        </div>
         <div class="flex flex-col flex-1">
           <%= f.label :brewery_name_cont, "酒蔵会社", class: "mb-1"  %>
           <%= f.search_field :brewery_name_cont, class: "border rounded px-3 py-2" %>
