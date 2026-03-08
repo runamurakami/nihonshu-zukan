@@ -10,10 +10,10 @@ class Sake < ApplicationRecord
   has_one_attached :label_image
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name rating sake_meter_value]
+    %w[id name rating sake_meter_value brewery_id]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[brewery taste_tags]
+    %w[brewery taste_tags prefecture]
   end
 end
