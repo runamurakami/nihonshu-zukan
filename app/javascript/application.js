@@ -9,3 +9,5 @@ Alpine.start()
 
 import Chart from "chart.js/auto"
 window.Chart = Chart
+
+import "./japanmap"
