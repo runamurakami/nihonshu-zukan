@@ -2,15 +2,14 @@ document.addEventListener("turbo:load", () => {
 
   console.log("map loaded")
 
-  const prefectures = document.querySelectorAll(".prefecture")
+  const prefectures = document.querySelectorAll("#japan-map .prefecture")
 
   prefectures.forEach(pref => {
 
+    const code = pref.dataset.code
+
     pref.addEventListener("click", () => {
-
-      const code = pref.dataset.code
-      console.log("prefecture code:", code)
-
+      window.location.href = `/sakes?q[brewery_prefecture_id_eq]=${code}`
     })
 
   })
