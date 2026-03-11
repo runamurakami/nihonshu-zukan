@@ -1,4 +1,4 @@
-<div id="japan-map" class="max-w-3xl mx-auto">
+<div id="japan-map" class="max-w-3xl mx-auto my-8">
 <svg class="geolonia-svg-map" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
 <title>Japanese Prefectures</title>
 <desc>Created by Geolonia (https://geolonia.com/).</desc>
@@ -209,3 +209,7 @@
 </svg>
 
 </div>
+
+<script>
+  window.prefectureCounts = <%= raw @prefecture_counts.to_json %>
+</script>

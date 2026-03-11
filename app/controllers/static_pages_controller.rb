@@ -21,5 +21,10 @@ class StaticPagesController < ApplicationController
       .group("taste_tags.name")
       .order("count_all DESC")
       .count
+
+    @prefecture_counts = current_user.sakes
+      .joins(brewery: :prefecture)
+      .group("prefectures.id")
+      .count
   end
 end
