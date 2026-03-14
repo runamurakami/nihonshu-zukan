@@ -5,7 +5,7 @@ class SakesController < ApplicationController
 
   def index
     @q = current_user.sakes.includes(:brewery, brewery: :prefecture, label_image_attachment: :blob).ransack(params[:q])
-    @sakes = @q.result(distinct: true)
+    @sakes = @q.result(distinct: true).page(params[:page])
   end
 
   def new
