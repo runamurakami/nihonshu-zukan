@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_14_155611) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_14_163421) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -58,7 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_14_155611) do
   end
 
   create_table "sake_taste_tags", force: :cascade do |t|
-    t.bigint "sake_id", null: false
+    t.uuid "sake_id", null: false
     t.bigint "taste_tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,7 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_14_155611) do
     t.index ["taste_tag_id"], name: "index_sake_taste_tags_on_taste_tag_id"
   end
 
-  create_table "sakes", force: :cascade do |t|
+  create_table "sakes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "brewery_name"
     t.string "prefecture_name"
@@ -74,7 +75,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_14_155611) do
     t.integer "rating"
     t.string "taste_tag_name"
     t.text "comment"
-    t.bigint "user_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "brewery_id", null: false
@@ -89,7 +90,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_14_155611) do
     t.index ["name"], name: "index_taste_tags_on_name", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
