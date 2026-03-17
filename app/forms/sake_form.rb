@@ -105,17 +105,17 @@ class SakeForm
 
   def split_sake_meter
     return if sake_meter_value.blank?
-  
+
     self.sake_meter_sign =
       sake_meter_value.start_with?("-") ? "-" : "+"
-  
+
     self.sake_meter_number =
       sake_meter_value.delete("+-")
   end
 
   def combine_sake_meter
     return if sake_meter_sign.blank? && sake_meter_number.blank?
-  
+
     self.sake_meter_value = "#{sake_meter_sign}#{sake_meter_number}"
   end
 end
