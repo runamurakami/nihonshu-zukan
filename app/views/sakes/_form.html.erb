@@ -21,7 +21,14 @@
   
   <div class="flex items-center mb-4">
     <%= f.label :sake_meter_value, "日本酒度", class: "w-32 font-semibold" %>
-    <%= f.text_field :sake_meter_value, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+    <%= f.select :sake_meter_sign,
+      [["＋", "+"], ["－", "-"]],
+      { include_blank: "" },
+      class: "border rounded px-2 py-2 w-16" %>
+    <%= f.number_field :sake_meter_number,
+      min: 0,
+      class: "border rounded px-3 py-2 w-24",
+      placeholder: "数値" %>
   </div>
   
   <div class="flex items-center mb-4">

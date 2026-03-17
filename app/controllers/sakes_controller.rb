@@ -66,6 +66,6 @@ class SakesController < ApplicationController
   end
 
   def sake_form_params
-    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :rating, :comment, :label_image, :taste_tags)
+    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :sake_meter_sign, :sake_meter_number, :rating, :comment, :label_image, :taste_tags)
   end
 end
