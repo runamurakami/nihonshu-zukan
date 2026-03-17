@@ -3,7 +3,8 @@ class SakeForm
   include ActiveModel::Attributes
 
   attr_accessor :sake, :name, :brewery_name, :prefecture_id, :sake_meter_value,
-                :rating, :taste_tags, :label_image, :comment, :user
+                :rating, :taste_tags, :label_image, :comment, :user,
+                :sake_meter_sign, :sake_meter_number
 
   validates :name, :brewery_name, presence: true
 
@@ -21,7 +22,8 @@ class SakeForm
       self.rating = sake.rating
       self.taste_tags = sake.taste_tags.pluck(:name).join("、")
       self.comment = sake.comment
-      # label_image は attach されたまま表示される
+
+      split_sake_meter
     end
 
     super(attributes)
@@ -30,6 +32,8 @@ class SakeForm
   # 新規登録
   def save
     return false unless valid?
+
+    combine_sake_meter
 
     ActiveRecord::Base.transaction do
       brewery = Brewery.find_or_create_by!(name: brewery_name)
@@ -58,6 +62,8 @@ class SakeForm
   def update(target_sake)
     return false unless valid?
     return false unless target_sake.present?
+
+    combine_sake_meter
 
     ActiveRecord::Base.transaction do
       brewery = Brewery.find_or_create_by!(name: brewery_name)
@@ -95,5 +101,21 @@ class SakeForm
       tag = TasteTag.find_or_create_by!(name: tag_name)
       SakeTasteTag.create!(sake: target_sake, taste_tag: tag)
     end
+  end
+
+  def split_sake_meter
+    return if sake_meter_value.blank?
+
+    self.sake_meter_sign =
+      sake_meter_value.start_with?("-") ? "-" : "+"
+
+    self.sake_meter_number =
+      sake_meter_value.delete("+-")
+  end
+
+  def combine_sake_meter
+    return if sake_meter_sign.blank? && sake_meter_number.blank?
+
+    self.sake_meter_value = "#{sake_meter_sign}#{sake_meter_number}"
   end
 end
