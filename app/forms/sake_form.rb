@@ -7,6 +7,9 @@ class SakeForm
                 :sake_meter_sign, :sake_meter_number
 
   validates :name, :brewery_name, presence: true
+  validates :rating,
+    numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 },
+    allow_blank: true
 
   # 新規作成 or 編集時に既存データをセット
   # attributes が空の場合のみ sake の値で初期化

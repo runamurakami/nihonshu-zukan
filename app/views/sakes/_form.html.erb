@@ -33,7 +33,7 @@
   
   <div class="flex items-center mb-4">
     <%= f.label :rating, "総合評価", class: "w-32 font-semibold" %>
-    <%= f.number_field :rating, step: 0.1, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+    <%= f.number_field :rating, in: 1..10, step: 1, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
   <div class="flex items-center mb-4">
