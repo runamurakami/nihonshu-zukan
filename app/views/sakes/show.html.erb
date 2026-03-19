@@ -33,7 +33,15 @@
         <p class="m-0"><%= @brewery.name %></p>
       </div>
       <p class="mb-1"><strong>日本酒度:</strong> <%= @sake.sake_meter_value%></p>
-      <p class="mb-1"><strong>総合評価:</strong> <%= @sake.rating %></p>
+      <p class="mb-1 flex items-center"><strong>総合評価:</strong>
+          <% if @sake.rating.present? %>
+            <% 10.times do |i| %>
+              <span class="<%= i < @sake.rating ? 'text-black-400' : 'text-gray-300' %>">★</span>
+            <% end %>
+          <% else %>
+            <span class="text-gray-400">未評価</span>
+          <% end %>
+      </p>
       <p class="mb-1"><strong>タグ:</strong> <%= @sake.taste_tag_name %></p>
       <!-- タグ表示 -->
       <div class="flex flex-wrap gap-2">
