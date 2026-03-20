@@ -34,7 +34,7 @@
           </div>
         </div>
       </main>
-    <% elsif controller_name == "sakes" && action_name == "index" %>
+    <% elsif controller_name == "sakes" && action_name.in?(%w[index drafts]) %>
       <!-- 一覧：フル幅 -->
       <main class="min-h-screen w-full px-6 lg:px-10 py-8">
         <%= yield %>
