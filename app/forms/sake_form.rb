@@ -4,29 +4,34 @@ class SakeForm
 
   attr_accessor :sake, :name, :brewery_name, :prefecture_id, :sake_meter_value,
                 :rating, :taste_tags, :label_image, :comment, :user,
-                :sake_meter_sign, :sake_meter_number
+                :sake_meter_sign, :sake_meter_number, :status
 
   validates :name, :brewery_name, presence: true
+  validates :sake_meter_sign, :sake_meter_number, presence: true, if: :published?
   validates :rating,
     numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 },
-    allow_blank: true
+    if: :published?
 
   # 新規作成 or 編集時に既存データをセット
-  # attributes が空の場合のみ sake の値で初期化
-  def initialize(attributes = {}, sake: nil, user: nil)
+  def initialize(attributes = {}, sake: nil, user: nil, **kwargs)
+    attributes = attributes.merge(kwargs)
+
     self.sake = sake
     self.user = user
 
-    if sake && attributes.blank?
-      self.name = sake.name
-      self.brewery_name = sake.brewery.name
-      self.prefecture_id = sake.brewery.prefecture_id
-      self.sake_meter_value = sake.sake_meter_value
-      self.rating = sake.rating
-      self.taste_tags = sake.taste_tags.pluck(:name).join("、")
-      self.comment = sake.comment
+    if sake
+      self.name = attributes[:name].presence || sake.name
+      self.brewery_name = attributes[:brewery_name].presence || sake.brewery.name
+      self.prefecture_id = attributes[:prefecture_id].presence || sake.brewery.prefecture_id
+      self.sake_meter_value = attributes[:sake_meter_value].presence || sake.sake_meter_value
+      self.rating = attributes[:rating].presence || sake.rating
+      self.taste_tags = attributes[:taste_tags] || sake.taste_tags.pluck(:name).join("、")
+      self.comment = attributes[:comment].presence || sake.comment
+      self.status = attributes[:status].presence || sake.status
 
       split_sake_meter
+    else
+      self.status = attributes[:status]
     end
 
     super(attributes)
@@ -48,6 +53,7 @@ class SakeForm
         sake_meter_value: sake_meter_value,
         rating: rating,
         comment: comment,
+        status: status,
         user: user
       )
       new_sake.label_image.attach(label_image) if label_image.present?
@@ -78,7 +84,8 @@ class SakeForm
         brewery: brewery,
         sake_meter_value: sake_meter_value,
         rating: rating,
-        comment: comment
+        comment: comment,
+        status: status
       )
 
       if label_image.present?
@@ -97,6 +104,10 @@ class SakeForm
   end
 
   private
+
+  def published?
+    status == "published"
+  end
 
   def attach_tags(target_sake)
     tag_names = taste_tags.to_s.split(/[,\u3001]/).map(&:strip).reject(&:blank?)

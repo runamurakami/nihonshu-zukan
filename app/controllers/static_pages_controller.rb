@@ -5,10 +5,10 @@ class StaticPagesController < ApplicationController
     redirect_to top_path if user_signed_in?
   end
   def top
-    @recent_sakes = current_user.sakes.order(created_at: :desc).limit(5)
+    @recent_sakes = current_user.sakes.published.order(created_at: :desc).limit(5)
 
     months = (0..5).map { |i| i.months.ago.beginning_of_month }.reverse
-    counts = current_user.sakes
+    counts = current_user.sakes.published
       .where(created_at: 6.months.ago.beginning_of_month..Time.current)
       .group("DATE_TRUNC('month', created_at)")
       .count
@@ -16,13 +16,13 @@ class StaticPagesController < ApplicationController
       [ month, counts[month] || 0 ]
       end.to_h
 
-    @tag_counts = current_user.sakes
+    @tag_counts = current_user.sakes.published
       .joins(:taste_tags)
       .group("taste_tags.name")
       .order("count_all DESC")
       .count
 
-    @prefecture_counts = current_user.sakes
+    @prefecture_counts = current_user.sakes.published
       .joins(brewery: :prefecture)
       .group("prefectures.id")
       .count

@@ -4,12 +4,17 @@ class SakesController < ApplicationController
   before_action :authorize_user!, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @q = current_user.sakes.includes(:brewery, brewery: :prefecture, label_image_attachment: :blob).ransack(params[:q])
+    @q = current_user.sakes.published.includes(:brewery, brewery: :prefecture, label_image_attachment: :blob).ransack(params[:q])
+    @sakes = @q.result(distinct: true).page(params[:page])
+  end
+
+  def drafts
+    @q = current_user.sakes.draft.includes(:brewery, brewery: :prefecture, label_image_attachment: :blob).ransack(params[:q])
     @sakes = @q.result(distinct: true).page(params[:page])
   end
 
   def new
-    @sake_form = SakeForm.new(user: current_user)
+    @sake_form = SakeForm.new(user: current_user, status: params[:status])
   end
 
   def create
@@ -66,6 +71,6 @@ class SakesController < ApplicationController
   end
 
   def sake_form_params
-    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :sake_meter_sign, :sake_meter_number, :rating, :comment, :label_image, :taste_tags)
+    params.require(:sake_form).permit(:name, :brewery_name, :prefecture_id, :sake_meter_value, :sake_meter_sign, :sake_meter_number, :rating, :comment, :label_image, :taste_tags, :status)
   end
 end

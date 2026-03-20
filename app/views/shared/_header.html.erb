@@ -6,7 +6,12 @@
       <ul class="flex space-x-4">
         <% if user_signed_in? %>
           <li><%= link_to "図鑑", sakes_path %></li>
-          <li><%= link_to "登録", new_sake_path %></li>
+          <li class="flex items-center space-x-1">
+            <span>登録：</span>
+            <%= link_to "飲んだ", new_sake_path(status: "published") %>
+            <span class="mx-2">|</span>
+            <%= link_to "飲みたい", new_sake_path(status: "draft") %>
+          </li>
           <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "p-1 border border-blue-900 rounded" %></li>
         <% else %>
           <li><%= link_to "サインイン", new_user_session_path %></li>

@@ -19,5 +19,9 @@ Rails.application.routes.draw do
   root "static_pages#landing"
   get "top", to: "static_pages#top"
 
-  resources :sakes, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
+  resources :sakes, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
+    collection do
+      get :drafts
+    end
+  end
 end
