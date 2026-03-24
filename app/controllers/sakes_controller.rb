@@ -57,6 +57,17 @@ class SakesController < ApplicationController
     redirect_to sakes_path, notice: "日本酒を削除しました。"
   end
 
+  def autocomplete
+    query = params[:q].to_s.strip
+    results =
+      if query.present?
+        Sake.where("name ILIKE ?", "%#{query}%").limit(5).pluck(:name)
+      else
+        []
+      end
+    render json: results
+  end
+
   private
 
   def set_sake

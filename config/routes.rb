@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :sakes, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
     collection do
       get :drafts
+      get :autocomplete
     end
   end
+
+  get "breweries/autocomplete", to: "breweries#autocomplete"
 end
