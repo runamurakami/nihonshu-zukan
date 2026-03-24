@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import SakeAutocompleteController from "./sake_autocomplete_controller"
+application.register("sake-autocomplete", SakeAutocompleteController)
+
+import BreweryAutocompleteController from "./brewery_autocomplete_controller"
+application.register("brewery-autocomplete", BreweryAutocompleteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

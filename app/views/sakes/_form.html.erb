@@ -2,7 +2,8 @@
 <%= form_with model: @sake_form,
               url: @sake_form.sake.present? ? sake_path(@sake_form.sake) : sakes_path,
               method: @sake_form.sake.present? ? :patch : :post,
-              local: true do |f| %>
+              local: true,
+              data: { controller: "autocomplete" } do |f| %>
 
   <div class="flex justify-center gap-4 mb-4">
     <label class="cursor-pointer">
@@ -22,7 +23,21 @@
 
   <div class="flex items-center mb-4">
     <%= f.label :name, "日本酒名", class: "w-32 font-semibold" %>
-    <%= f.text_field :name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+    <div class="flex-1 relative" data-controller="sake-autocomplete">
+
+      <%= f.text_field :name,
+        autocomplete: "off",
+        class: "w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200",
+        data: {
+          action: "input->sake-autocomplete#search",
+          sake_autocomplete_target: "input"
+        } %>
+
+      <ul data-sake-autocomplete-target="results"
+        class="absolute z-50 w-full bg-white border border-gray-300 rounded-lg mt-1 hidden max-h-40 overflow-y-auto">
+      </ul>
+
+    </div>
   </div>
 
   <div class="flex items-center mb-4">
@@ -32,7 +47,22 @@
 
   <div class="flex items-center mb-4">
     <%= f.label :brewery_name, "酒造会社", class: "w-32 font-semibold" %>
-    <%= f.text_field :brewery_name, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
+
+    <div class="flex-1 relative" data-controller="brewery-autocomplete">
+
+      <%= f.text_field :brewery_name,
+        autocomplete: "off",
+        class: "w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200",
+        data: {
+          action: "input->brewery-autocomplete#search",
+          brewery_autocomplete_target: "input"
+        } %>
+
+      <ul data-brewery-autocomplete-target="results"
+        class="absolute z-50 w-full bg-white border border-gray-300 rounded-lg mt-1 hidden max-h-40 overflow-y-auto">
+      </ul>
+
+    </div>
   </div>
   
   <div class="flex items-center mb-4">
