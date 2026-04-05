@@ -61,7 +61,7 @@ class SakesController < ApplicationController
     query = params[:q].to_s.strip
     results =
       if query.present?
-        Sake.where("name ILIKE ?", "%#{query}%").limit(5).pluck(:name)
+        current_user.sakes.where("name ILIKE ?", "%#{query}%").limit(5).pluck(:name)
       else
         []
       end

@@ -4,7 +4,18 @@
       <div class="flex gap-6">
         <div class="flex flex-col flex-1">
           <%= f.label :name_cont, "日本酒名", class: "mb-1" %>
-          <%= f.search_field :name_cont, class: "border rounded px-3 py-2" %>
+          <div class="flex-1 relative" data-controller="sake-autocomplete">
+            <%= f.search_field :name_cont,
+              autocomplete: "off",
+              class: "border rounded px-3 py-2",
+              data: {
+                action: "input->sake-autocomplete#search",
+                sake_autocomplete_target: "input"
+              } %>
+            <ul data-sake-autocomplete-target="results"
+              class="absolute z-50 w-full bg-white border mt-1 rounded hidden max-h-40 overflow-y-auto">
+            </ul>
+          </div>
         </div>
         <div class="flex flex-col flex-1">
           <%= f.label :brewery_prefecture_id_eq, "産地", class: "mb-1" %>
@@ -18,11 +29,33 @@
         </div>
         <div class="flex flex-col flex-1">
           <%= f.label :brewery_name_cont, "酒蔵会社", class: "mb-1"  %>
-          <%= f.search_field :brewery_name_cont, class: "border rounded px-3 py-2" %>
+          <div class="flex-1 relative" data-controller="brewery-autocomplete">
+            <%= f.search_field :brewery_name_cont,
+              autocomplete: "off",
+              class: "border rounded px-3 py-2",
+              data: {
+                action: "input->brewery-autocomplete#search",
+                brewery_autocomplete_target: "input"
+              } %>
+            <ul data-brewery-autocomplete-target="results"
+              class="absolute z-50 w-full bg-white border mt-1 rounded hidden max-h-40 overflow-y-auto">
+            </ul>
+          </div>
         </div>
         <div class="flex flex-col flex-1">
           <%= f.label :taste_tags_name_cont, "タグ", class: "mb-1"  %>
-          <%= f.search_field :taste_tags_name_cont, class: "border rounded px-3 py-2" %>
+          <div class="flex-1 relative" data-controller="taste-tag-autocomplete">
+            <%= f.search_field :taste_tags_name_cont,
+              autocomplete: "off",
+              class: "border rounded px-3 py-2",
+              data: {
+                action: "input->taste-tag-autocomplete#search",
+                taste_tag_autocomplete_target: "input"
+              } %>
+            <ul data-taste-tag-autocomplete-target="results"
+              class="absolute z-50 w-full bg-white border mt-1 rounded hidden max-h-40 overflow-y-auto">
+            </ul>
+          </div>
         </div>
         <%= f.submit "検索", class: "btn btn-primary w-full" %>
       </div>

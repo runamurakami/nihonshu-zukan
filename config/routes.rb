@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   end
 
   get "breweries/autocomplete", to: "breweries#autocomplete"
+
+  get "taste_tags/autocomplete", to: "taste_tags#autocomplete"
 end
