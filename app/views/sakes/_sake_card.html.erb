@@ -5,8 +5,8 @@
         <div class="aspect-square bg-gray-100 rounded-lg 
                     flex items-center justify-center overflow-hidden">
           <% if sake.label_image.attached? %>
-            <%= image_tag sake.label_image,
-                  class: "max-h-40 object-contain" %>
+            <%= image_tag url_for(sake.label_image),
+                  class: "w-full aspect-square object-cover rounded-lg" %>
           <% else %>
             <span class="text-gray-400 text-sm">no label</span>
           <% end %>
