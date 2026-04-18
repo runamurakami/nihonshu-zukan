@@ -8,6 +8,5 @@ class CreateUserBadges < ActiveRecord::Migration[7.2]
     end
 
     add_index :user_badges, [ :user_id, :badge_id ], unique: true
-    add_index :user_badges, :user_id
   end
 end
