@@ -12,3 +12,14 @@ prefectures = %w[
 prefectures.each do |name|
   Prefecture.find_or_create_by!(name: name)
 end
+
+badges = [
+  { name: "はじめて", condition_type: "sake_count", condition_value: 1, position: 1 },
+  { name: "ビギナー", condition_type: "sake_count", condition_value: 5, position: 2 },
+  { name: "日本酒好き", condition_type: "sake_count", condition_value: 10, position: 3 }
+]
+
+badges.each do |attrs|
+  badge = Badge.find_or_initialize_by(name: attrs[:name])
+  badge.update!(attrs)
+end
