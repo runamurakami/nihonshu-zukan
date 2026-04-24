@@ -21,6 +21,7 @@ class SakesController < ApplicationController
     @sake_form = SakeForm.new(sake_form_params)
     @sake_form.user = current_user
     if @sake_form.save
+      BadgeGrantService.call(current_user)
       redirect_to sakes_path, notice: "日本酒を登録しました。"
     else
       flash.now[:alert] = "登録に失敗しました。"
