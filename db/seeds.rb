@@ -14,9 +14,9 @@ prefectures.each do |name|
 end
 
 badges = [
-  { name: "はじめて", condition_type: "sake_count", condition_value: 1, position: 1 },
-  { name: "ビギナー", condition_type: "sake_count", condition_value: 5, position: 2 },
-  { name: "日本酒好き", condition_type: "sake_count", condition_value: 10, position: 3 }
+  { name: "はじめて", condition_type: "sake_count", condition_value: 1, position: 1, icon_path: "badges/badge_sake_1.png" },
+  { name: "ビギナー", condition_type: "sake_count", condition_value: 5, position: 2, icon_path: "badges/badge_sake_5.png" },
+  { name: "日本酒好き", condition_type: "sake_count", condition_value: 10, position: 3, icon_path: "badges/badge_sake_10.png" }
 ]
 
 badges.each do |attrs|
