@@ -49,7 +49,14 @@
     </div>
     <!-- バッジタブ -->
     <div x-show="tab === 'badge'">
-      <%= image_tag Badge.first.icon_path %>
+      <div class="grid grid-cols-4 gap-6">
+        <% @badges.each do |badge| %>
+        <div class="text-center">
+          <%= image_tag badge.icon_path,
+            class: "mx-auto w-40 h-40 #{'grayscale opacity-40' unless current_user.badges.exists?(badge.id)}" %>
+          <pclass="mt-2 text-sm"><%= badge.name %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
