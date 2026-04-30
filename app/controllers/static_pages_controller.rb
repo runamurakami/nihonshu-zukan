@@ -26,5 +26,7 @@ class StaticPagesController < ApplicationController
       .joins(brewery: :prefecture)
       .group("prefectures.id")
       .count
+
+    @badges = Badge.order(:position)
   end
 end
