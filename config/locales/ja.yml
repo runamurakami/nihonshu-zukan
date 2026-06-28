@@ -14,3 +14,15 @@ ja:
       status:
         draft: 飲みたい
         published: 飲んだ
+  flash:
+    sakes:
+      create:
+        success: 日本酒を登録しました。
+        failure: 登録に失敗しました。
+      update:
+        success: 日本酒を更新しました。
+        failure: 更新に失敗しました。
+      destroy:
+        success: 日本酒を削除しました。
+      authorization:
+        access_denined: この日本酒にはアクセスできません。
