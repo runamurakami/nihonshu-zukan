@@ -1,0 +1,16 @@
+ja:
+  defaults:
+    create: 登録
+    update: 更新
+    delete: 削除
+    edit: 編集
+    back: 戻る
+    logout: ログアウト
+    signup: 新規登録
+    signin: サインイン
+    search: 検索
+  enums:
+    sake:
+      status:
+        draft: 飲みたい
+        published: 飲んだ

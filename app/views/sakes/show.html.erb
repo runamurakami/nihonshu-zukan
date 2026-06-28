@@ -4,9 +4,9 @@
   <% end %>
 
   <div class="absolute right-0 top-0">
-    <%= link_to "編集", edit_sake_path(@sake),
+    <%= link_to t("defaults.edit"), edit_sake_path(@sake),
         class: "px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm" %>
-    <%= link_to "削除", sake_path(@sake),
+    <%= link_to t("defaults.delete"), sake_path(@sake),
       data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
       class: "px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm" %>
   </div>
@@ -63,5 +63,5 @@
 
   <!-- 一覧に戻るリンク -->
   <div class="mt-4">
-    <%= link_to "一覧に戻る", sakes_path, class: "text-blue-800 hover:text-blue-600 underline" %>
+    <%= link_to t("defaults.back"), sakes_path, class: "text-blue-800 hover:text-blue-600 underline" %>
   </div>

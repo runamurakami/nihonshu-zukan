@@ -69,3 +69,5 @@ gem "kaminari"
 gem "cloudinary"
 
 gem "activestorage-cloudinary-service"
+
+gem "rails-i18n"

@@ -9,14 +9,14 @@
     <label class="cursor-pointer">
       <%= f.radio_button :status, :published, class: "hidden peer" %>
         <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
-          飲んだ
+          <%= t("enums.sake.status.published") %>
         </span>
     </label>
               
     <label class="cursor-pointer">
       <%= f.radio_button :status, :draft, class: "hidden peer" %>
         <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
-          飲みたい
+          <%= t("enums.sake.status.draft") %>
         </span>
     </label>
   </div>
@@ -98,7 +98,7 @@
   </div>
   
   <div>
-    <% submit_label = f.object.sake.present? ? "更新する" : "登録する" %>
+    <% submit_label = f.object.sake.present? ? t("defaults.update") : t("defaults.create") %>
     <%= f.submit submit_label, class: "w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg" %>
   </div>
 <% end %>
