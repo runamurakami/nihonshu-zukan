@@ -1,6 +1,6 @@
 <div class="relative mb-6">
   <% content_for :page_title do %>
-    <h1 class="text-2xl font-bold">日本酒詳細</h1>
+    <h1 class="text-2xl font-bold"><%= t(".title") %></h1>
   <% end %>
 
   <div class="absolute right-0 top-0">
@@ -32,8 +32,8 @@
         <p class="m-0"><%= @prefecture&.name || "未登録" %></p>
         <p class="m-0"><%= @brewery.name %></p>
       </div>
-      <p class="mb-1"><strong>日本酒度:</strong> <%= @sake.sake_meter_value%></p>
-      <p class="mb-1 flex items-center"><strong>総合評価:</strong>
+      <p class="mb-1"><strong><%= t("activemodel.attributes.sake_form.sake_meter_value") %>:</strong> <%= @sake.sake_meter_value%></p>
+      <p class="mb-1 flex items-center"><strong><%= t("activemodel.attributes.sake_form.rating") %>:</strong>
           <% if @sake.rating.present? %>
             <% 10.times do |i| %>
               <span class="<%= i < @sake.rating ? 'text-black-400' : 'text-gray-300' %>">★</span>
@@ -42,7 +42,7 @@
             <span class="text-gray-400">未評価</span>
           <% end %>
       </p>
-      <p class="mb-1"><strong>タグ:</strong> <%= @sake.taste_tag_name %></p>
+      <p class="mb-1"><strong><%= t("activemodel.attributes.sake_form.taste_tags") %>:</strong> <%= @sake.taste_tag_name %></p>
       <!-- タグ表示 -->
       <div class="flex flex-wrap gap-2">
         <% @taste_tags.each do |tag| %>
