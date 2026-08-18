@@ -3,19 +3,19 @@
   <div class="flex gap-2">
     <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
       :class="tab === 'recent' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='recent'">
-      最近登録した日本酒
+      <%= t(".tabs.recent.title") %>
     </button>
     <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
-     :class="tab === 'map' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='map'">
-      マップ
+      :class="tab === 'map' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='map'">
+      <%= t(".tabs.map") %>
     </button>
     <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
       :class="tab === 'graph' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='graph'">
-      グラフ
+      <%= t(".tabs.graph") %>
     </button>
     <button class="px-6 py-3 rounded-t-2xl font-semibold transition"
       :class="tab === 'badge' ? 'bg-white' : 'bg-blue-100 text-gray-500'" @click="tab='badge'">
-      バッジ
+      <%= t(".tabs.badge") %>
     </button>
   </div>
   <!-- タブ切替コンテンツ -->
@@ -23,8 +23,8 @@
     <!-- 最近登録した日本酒タブ -->
     <div x-show="tab === 'recent'">
       <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold">最近登録した日本酒</h1>
-        <%= link_to "日本酒一覧へ →",
+        <h1 class="text-3xl font-bold"><%= t(".tabs.recent.title") %></h1>
+        <%= link_to t(".tabs.recent.sakes_index"),
               sakes_path,
               class: "text-sm font-semibold text-indigo-600 hover:underline" %>
       </div>

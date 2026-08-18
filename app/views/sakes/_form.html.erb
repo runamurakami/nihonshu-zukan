@@ -9,20 +9,20 @@
     <label class="cursor-pointer">
       <%= f.radio_button :status, :published, class: "hidden peer" %>
         <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
-          飲んだ
+          <%= t("enums.sake.status.published") %>
         </span>
     </label>
               
     <label class="cursor-pointer">
       <%= f.radio_button :status, :draft, class: "hidden peer" %>
         <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
-          飲みたい
+          <%= t("enums.sake.status.draft") %>
         </span>
     </label>
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :name, "日本酒名", class: "w-32 font-semibold" %>
+    <%= f.label :name, class: "w-32 font-semibold" %>
     <div class="flex-1 relative" data-controller="sake-autocomplete">
 
       <%= f.text_field :name,
@@ -41,12 +41,12 @@
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :prefecture_id, "産地", class: "w-32 font-semibold" %>
+    <%= f.label :prefecture_id, class: "w-32 font-semibold" %>
     <%=  f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :brewery_name, "酒造会社", class: "w-32 font-semibold" %>
+    <%= f.label :brewery_name, class: "w-32 font-semibold" %>
 
     <div class="flex-1 relative" data-controller="brewery-autocomplete">
 
@@ -66,7 +66,7 @@
   </div>
   
   <div class="flex items-center mb-4">
-    <%= f.label :sake_meter_value, "日本酒度", class: "w-32 font-semibold" %>
+    <%= f.label :sake_meter_value, class: "w-32 font-semibold" %>
     <%= f.select :sake_meter_sign,
       [["＋", "+"], ["－", "-"]],
       { include_blank: "" },
@@ -78,27 +78,27 @@
   </div>
   
   <div class="flex items-center mb-4">
-    <%= f.label :rating, "総合評価", class: "w-32 font-semibold" %>
+    <%= f.label :rating, class: "w-32 font-semibold" %>
     <%= f.number_field :rating, in: 1..10, step: 1, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
   <div class="flex items-center mb-4">
-    <%= f.label :taste_tags, "タグ", class: "w-32 font-semibold" %>
+    <%= f.label :taste_tags, class: "w-32 font-semibold" %>
     <%= f.text_field :taste_tags, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
 
   <div class="flex items-center mb-6">
-    <%= f.label :label_image, "ラベル画像", class: "w-32 font-semibold" %>
+    <%= f.label :label_image, class: "w-32 font-semibold" %>
     <%= f.file_field :label_image, class: "flex-1" %>
   </div>
 
   <div class="flex items-center mb-4">
-    <%= f.label :comment, "メモ", class: "w-32 font-semibold" %>
+    <%= f.label :comment, class: "w-32 font-semibold" %>
     <%= f.text_area :comment, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
   <div>
-    <% submit_label = f.object.sake.present? ? "更新する" : "登録する" %>
+    <% submit_label = f.object.sake.present? ? t("defaults.update") : t("defaults.create") %>
     <%= f.submit submit_label, class: "w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg" %>
   </div>
 <% end %>
