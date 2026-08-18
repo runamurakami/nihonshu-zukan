@@ -12,6 +12,7 @@ ja:
     logout: ログアウト
     signup: 新規登録
     signin: サインイン
+    no_account: アカウントをお持ちでない方はこちら
     search: 検索
     sort: 登録日順
   enums:
@@ -31,6 +32,15 @@ ja:
         success: 日本酒を削除しました。
       authorization:
         access_denined: この日本酒にはアクセスできません。
+  devise:
+    failure:
+      unauthenticated: ログインしてください。
+      invalid: メールアドレスまたはパスワードが正しくありません。
+    registrations:
+      signed_up: アカウントを登録しました。
+    sessions:
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
   activemodel:
     attributes:
       sake_form:
@@ -44,6 +54,14 @@ ja:
         taste_tags: タグ
         label_image: ラベル画像
         comment: メモ
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認用
+
   sakes:
     index:
       title: 日本酒一覧
@@ -65,5 +83,11 @@ ja:
         map: マップ
         graph: グラフ
         badge: バッジ
-
+  users:
+    registrations:
+      new:
+        title: 新規登録
+    sessions:
+      new:
+        title: サインイン
 
