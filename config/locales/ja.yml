@@ -1,0 +1,93 @@
+ja:
+  app:
+    name: わたしの日本酒図鑑
+    catalog: 図鑑
+  defaults:
+    registration_label: 登録：
+    create: 登録
+    update: 更新
+    delete: 削除
+    edit: 編集
+    back: 戻る
+    logout: ログアウト
+    signup: 新規登録
+    signin: サインイン
+    no_account: アカウントをお持ちでない方はこちら
+    search: 検索
+    sort: 登録日順
+  enums:
+    sake:
+      status:
+        draft: 飲みたい
+        published: 飲んだ
+  flash:
+    sakes:
+      create:
+        success: 日本酒を登録しました。
+        failure: 登録に失敗しました。
+      update:
+        success: 日本酒を更新しました。
+        failure: 更新に失敗しました。
+      destroy:
+        success: 日本酒を削除しました。
+      authorization:
+        access_denined: この日本酒にはアクセスできません。
+  devise:
+    failure:
+      unauthenticated: ログインしてください。
+      invalid: メールアドレスまたはパスワードが正しくありません。
+    registrations:
+      signed_up: アカウントを登録しました。
+    sessions:
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+  activemodel:
+    attributes:
+      sake_form:
+        name: 日本酒名
+        brewery_name: 酒造会社
+        sake_meter_value: 日本酒度
+        sake_meter_sign: 日本酒度(+/-)
+        sake_meter_number: 日本酒度(数値)
+        rating: 総合評価
+        prefecture_id: 産地
+        taste_tags: タグ
+        label_image: ラベル画像
+        comment: メモ
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認用
+
+  sakes:
+    index:
+      title: 日本酒一覧
+      draft_sakes: 飲みたいリスト→
+    show:
+      title: 日本酒詳細
+    new:
+      title: 日本酒登録
+    edit:
+      title: 日本酒編集
+    drafts:
+      title: 飲みたい日本酒一覧
+  static_pages:
+    top:
+      tabs:
+        recent: 
+          title: 最近登録した日本酒
+          sakes_index: 日本酒一覧へ → 
+        map: マップ
+        graph: グラフ
+        badge: バッジ
+  users:
+    registrations:
+      new:
+        title: 新規登録
+    sessions:
+      new:
+        title: サインイン
+

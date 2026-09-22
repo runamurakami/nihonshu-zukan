@@ -1,21 +1,21 @@
 <header class="bg-white shadow-md">
   <div class="container mx-auto flex justify-between items-center py-4 px-6">
-    <%= link_to "わたしの日本酒図鑑", root_path, class: "text-4xl font-bold" %>
+    <%= link_to t("app.name"), root_path, class: "text-4xl font-bold" %>
 
     <nav>
       <ul class="flex space-x-4">
         <% if user_signed_in? %>
-          <li><%= link_to "図鑑", sakes_path %></li>
+          <li><%= link_to t("app.catalog"), sakes_path %></li>
           <li class="flex items-center space-x-1">
-            <span>登録：</span>
-            <%= link_to "飲んだ", new_sake_path(status: "published") %>
+            <span><%= t("defaults.registration_label") %></span>
+            <%= link_to t("enums.sake.status.published"), new_sake_path(status: "published") %>
             <span class="mx-2">|</span>
-            <%= link_to "飲みたい", new_sake_path(status: "draft") %>
+            <%= link_to t("enums.sake.status.draft"), new_sake_path(status: "draft") %>
           </li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "p-1 border border-blue-900 rounded" %></li>
+          <li><%= link_to t("defaults.logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "p-1 border border-blue-900 rounded" %></li>
         <% else %>
-          <li><%= link_to "サインイン", new_user_session_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to t("defaults.signin"), new_user_session_path %></li>
+          <li><%= link_to t("defaults.signup"), new_user_registration_path %></li>
         <% end %>
       </ul>
     </nav>

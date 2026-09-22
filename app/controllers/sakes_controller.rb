@@ -22,9 +22,9 @@ class SakesController < ApplicationController
     @sake_form.user = current_user
     if @sake_form.save
       BadgeGrantService.call(current_user)
-      redirect_to sakes_path, notice: "日本酒を登録しました。"
+      redirect_to sakes_path, notice: t("flash.sakes.create.success")
     else
-      flash.now[:alert] = "登録に失敗しました。"
+      flash.now[:alert] = t("flash.sakes.create.failure")
       render :new, status: :unprocessable_entity
     end
   end
@@ -45,9 +45,9 @@ class SakesController < ApplicationController
     @sake = Sake.find(params[:id])
     @sake_form = SakeForm.new(sake_form_params, sake: @sake)
     if @sake_form.update(@sake)
-      redirect_to sake_path(@sake), notice: "日本酒を更新しました。"
+      redirect_to sake_path(@sake), notice: t("flash.sakes.update.success")
     else
-      flash.now[:alert] = "更新に失敗しました。"
+      flash.now[:alert] = t("flash.sakes.update.failure")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -55,7 +55,7 @@ class SakesController < ApplicationController
   def destroy
     @sake = Sake.find(params[:id])
     @sake.destroy
-    redirect_to sakes_path, notice: "日本酒を削除しました。"
+    redirect_to sakes_path, notice: t("flash.sakes.destroy.success")
   end
 
   def autocomplete
@@ -77,7 +77,7 @@ class SakesController < ApplicationController
 
   def authorize_user!
     unless @sake.user == current_user
-      flash[:alert] = "この日本酒にはアクセスできません"
+      flash[:alert] = t("flash.sakes.authorization.access_denined")
       redirect_to sakes_path
     end
   end
