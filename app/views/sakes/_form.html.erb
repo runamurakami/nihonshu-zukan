@@ -8,20 +8,20 @@
   <div class="flex justify-center gap-4 mb-4">
     <label class="cursor-pointer">
       <%= f.radio_button :status, :published, class: "hidden peer" %>
-        <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
+        <span class="px-3 py-2 md:px-6 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
           <%= t("enums.sake.status.published") %>
         </span>
     </label>
               
     <label class="cursor-pointer">
       <%= f.radio_button :status, :draft, class: "hidden peer" %>
-        <span class="px-6 py-2 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
+        <span class="px-3 py-2 md:px-6 rounded-full border bg-white text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:border-blue-500 transition">
           <%= t("enums.sake.status.draft") %>
         </span>
     </label>
   </div>
 
-  <div class="flex items-center mb-4">
+  <div class="flex flex-col md:flex-row md:items-center mb-4">
     <%= f.label :name, class: "w-32 font-semibold" %>
     <div class="flex-1 relative" data-controller="sake-autocomplete">
 
@@ -45,7 +45,7 @@
     <%=  f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
   </div>
 
-  <div class="flex items-center mb-4">
+  <div class="flex flex-col md:flex-row md:items-center mb-4">
     <%= f.label :brewery_name, class: "w-32 font-semibold" %>
 
     <div class="flex-1 relative" data-controller="brewery-autocomplete">
@@ -82,17 +82,17 @@
     <%= f.number_field :rating, in: 1..10, step: 1, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
   
-  <div class="flex items-center mb-4">
+  <div class="flex flex-col md:flex-row md:items-center mb-4">
     <%= f.label :taste_tags, class: "w-32 font-semibold" %>
     <%= f.text_field :taste_tags, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
 
-  <div class="flex items-center mb-6">
+  <div class="flex flex-col md:flex-row md:items-center mb-6">
     <%= f.label :label_image, class: "w-32 font-semibold" %>
     <%= f.file_field :label_image, class: "flex-1" %>
   </div>
 
-  <div class="flex items-center mb-4">
+  <div class="flex flex-col md:flex-row md:items-center mb-4">
     <%= f.label :comment, class: "w-32 font-semibold" %>
     <%= f.text_area :comment, class: "flex-1 border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200" %>
   </div>
