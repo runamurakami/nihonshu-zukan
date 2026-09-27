@@ -1,8 +1,10 @@
-<header class="bg-white shadow-md">
-  <div class="container mx-auto flex justify-between items-center py-4 px-6">
-    <%= link_to t("app.name"), root_path, class: "text-4xl font-bold" %>
+<header class="bg-white shadow-md" x-data="{ open: false }">
+  <div class="container mx-auto flex flex-row justify-between items-center py-4 px-6">
+    <%= link_to t("app.name"), root_path, class: "text-2xl md:text-4xl font-bold" %>
 
-    <nav>
+    <button type="button" class="md:hidden" aria-label="メニューを開く" @click="open = !open">☰</button>
+
+    <nav class="hidden md:block">
       <ul class="flex space-x-4">
         <% if user_signed_in? %>
           <li><%= link_to t("app.catalog"), sakes_path %></li>
@@ -19,5 +21,18 @@
         <% end %>
       </ul>
     </nav>
+  </div>
+  <div x-show="open" class="md:hidden pl-6 pr-0 pb-4">
+      <ul class="space-y-3 w-44 ml-auto translate-x-6">
+        <% if user_signed_in? %>
+          <li><%= link_to t("app.catalog"), sakes_path %></li>
+          <li><%= link_to "#{t("defaults.registration_label")}#{t("enums.sake.status.published")}", new_sake_path(status: "published") %></li>
+          <li><%= link_to "#{t("defaults.registration_label")}#{t("enums.sake.status.draft")}", new_sake_path(status: "draft") %></li>
+          <li><%= link_to t("defaults.logout"), destroy_user_session_path, data: { turbo_method: :delete } %></li>
+        <% else %>
+          <li><%= link_to t("defaults.signin"), new_user_session_path %></li>
+          <li><%= link_to t("defaults.signup"), new_user_registration_path %></li>
+        <% end %>
+      </ul>
   </div>
 </header>
