@@ -1,13 +1,13 @@
 <div class="max-w-5xl mx-auto mb-10">
   <div class="bg-white rounded-2xl shadow-sm p-6">
     <%= search_form_for @q, url: sakes_path, method: :get do |f| %>
-      <div class="flex gap-6">
+      <div class="flex flex-col gap-2 md:flex-row md:gap-6">
         <div class="flex flex-col flex-1">
-          <%= f.label :name_cont, t("activemodel.attributes.sake_form.name"), class: "mb-1" %>
+          <%= f.label :name_cont, t("activemodel.attributes.sake_form.name"), class: "mb-1 text-sm md:text-base" %>
           <div class="flex-1 relative" data-controller="sake-autocomplete">
             <%= f.search_field :name_cont,
               autocomplete: "off",
-              class: "border rounded px-3 py-2",
+              class: "border rounded px-2 py-0.5 text-sm md:px-3 md:py-2 md:text-base",
               data: {
                 action: "input->sake-autocomplete#search",
                 sake_autocomplete_target: "input"
@@ -18,21 +18,21 @@
           </div>
         </div>
         <div class="flex flex-col flex-1">
-          <%= f.label :brewery_prefecture_id_eq, t("activemodel.attributes.sake_form.prefecture_id"), class: "mb-1" %>
+          <%= f.label :brewery_prefecture_id_eq, t("activemodel.attributes.sake_form.prefecture_id"), class: "mb-1 text-sm md:text-base" %>
           <%= f.collection_select :brewery_prefecture_id_eq,
             Prefecture.order(:id),
             :id,
             :name,
             { include_blank: "産地を選択" },
-            class: "border rounded px-3 py-2"
+            class: "border rounded px-2 py-0.5 text-sm md:px-3 md:py-2 md:text-base"
           %>
         </div>
         <div class="flex flex-col flex-1">
-          <%= f.label :brewery_name_cont, t("activemodel.attributes.sake_form.brewery_name"), class: "mb-1"  %>
+          <%= f.label :brewery_name_cont, t("activemodel.attributes.sake_form.brewery_name"), class: "mb-1 text-sm md:text-base"  %>
           <div class="flex-1 relative" data-controller="brewery-autocomplete">
             <%= f.search_field :brewery_name_cont,
               autocomplete: "off",
-              class: "border rounded px-3 py-2",
+              class: "border rounded px-2 py-0.5 text-sm md:px-3 md:py-2 md:text-base",
               data: {
                 action: "input->brewery-autocomplete#search",
                 brewery_autocomplete_target: "input"
@@ -43,11 +43,11 @@
           </div>
         </div>
         <div class="flex flex-col flex-1">
-          <%= f.label :taste_tags_name_cont, t("activemodel.attributes.sake_form.taste_tags"), class: "mb-1"  %>
+          <%= f.label :taste_tags_name_cont, t("activemodel.attributes.sake_form.taste_tags"), class: "mb-1 text-sm md:text-base"  %>
           <div class="flex-1 relative" data-controller="taste-tag-autocomplete">
             <%= f.search_field :taste_tags_name_cont,
               autocomplete: "off",
-              class: "border rounded px-3 py-2",
+              class: "border rounded px-2 py-0.5 text-sm md:px-3 md:py-2 md:text-base",
               data: {
                 action: "input->taste-tag-autocomplete#search",
                 taste_tag_autocomplete_target: "input"
