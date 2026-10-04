@@ -79,6 +79,7 @@ ja:
       tabs:
         recent: 
           title: 最近登録した日本酒
+          title_mobile: 最近の日本酒
           sakes_index: 日本酒一覧へ → 
         map: マップ
         graph: グラフ
