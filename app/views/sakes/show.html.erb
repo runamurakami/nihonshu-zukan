@@ -20,7 +20,7 @@
         <%= image_tag @sake.label_image, class: "w-full h-auto rounded-lg" %>
       </div>
     <% else %>
-      <div class="w-64 h-64 mx-auto md:mx-0 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
+      <div class="w-48 h-48 mx-auto md:mx-0 bg-gray-200 flex items-center justify-center text-gray-500 rounded">
         no label
       </div>
     <% end %>
@@ -33,7 +33,7 @@
         <p class="m-0"><%= @brewery.name %></p>
       </div>
       <p class="mb-1"><strong><%= t("activemodel.attributes.sake_form.sake_meter_value") %>:</strong> <%= @sake.sake_meter_value%></p>
-      <p class="mb-1 flex items-center"><strong><%= t("activemodel.attributes.sake_form.rating") %>:</strong>
+      <p class="mb-1"><strong class="block md:inline"><%= t("activemodel.attributes.sake_form.rating") %>:</strong>
           <% if @sake.rating.present? %>
             <% 10.times do |i| %>
               <span class="<%= i < @sake.rating ? 'text-black-400' : 'text-gray-300' %>">★</span>
